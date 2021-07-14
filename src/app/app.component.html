@@ -1,18 +1,27 @@
 
 <div class="container">
   <p-card>
-    <ng-template pTemplate="header">
+    
       <h3>CONTROL DE INGRESO</h3>
-    </ng-template>   
-    <form (ngSubmit)="auth()">
+    <form *ngIf="carga" >
+      <h4>Seleccione un archivo de excel de su equipo</h4 >
+      <span class="">
+        <input class="inputCarga" type="file" id="file-upload" name="fileUpload" accept=".xls,.xlsx" (change)="cargar($event)">
+      </span>
+      <br>
+      <!-- <p-button type="submit" label="Cargar"></p-button> -->
+    </form>
+    <br>
+    <form *ngIf="!carga" (ngSubmit)="auth()">
       <span class="p-float-label">
-        <input  [(ngModel)]="dni" type="text" autocomplete="off" pInputText name="dni">   
+        <input  [(ngModel)]="dni" type="text" autocomplete="off" pInputText name="dni"> 
         <label for="float-input">Ingrese un número de DNI</label>        
       </span>
       <br>
-      <p-button type="submit" label="Buscar"></p-button>
+      <p-button label="Buscar"  type="submit" icon="pi pi-search"   ></p-button>
     </form>
   </p-card>  
 </div>
-<p-toast position="bottom-center"></p-toast>
+<p-toast position="top-center"></p-toast>
+
 
